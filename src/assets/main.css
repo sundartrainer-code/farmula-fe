@@ -1,0 +1,345 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply min-h-screen bg-slate-50 text-slate-950 antialiased dark:bg-slate-950 dark:text-slate-100;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-lg border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-lg bg-cyan-500 px-5 py-3 font-bold text-white transition hover:bg-cyan-600 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-muted {
+    @apply inline-flex items-center justify-center rounded-lg border border-slate-200 bg-white px-5 py-3 font-bold text-slate-700 transition hover:bg-slate-100 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800;
+  }
+  .input {
+    @apply w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-950 outline-none focus:border-cyan-400 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100;
+  }
+  .skeleton-shimmer {
+    @apply animate-pulse bg-gradient-to-r from-slate-200 via-slate-100 to-slate-200 dark:from-slate-800 dark:via-slate-700 dark:to-slate-800;
+    background-size: 200% 100%;
+    animation: skeleton-shimmer 1.45s ease-in-out infinite;
+  }
+}
+
+@layer components {
+  html:not(.dark) .dashboard-premium > header,
+  html:not(.dark) .dashboard-premium article {
+    background-color: #ffffff !important;
+    border-color: #e2e8f0 !important;
+    color: #0f172a !important;
+  }
+
+  html:not(.dark) .dashboard-premium article .text-white {
+    color: #0f172a !important;
+  }
+
+  html:not(.dark) .dashboard-premium article .bg-slate-800 {
+    background-color: #f1f5f9 !important;
+  }
+
+  html:not(.dark) .dashboard-premium article .border-slate-800 {
+    border-color: #e2e8f0 !important;
+  }
+
+  .secure-video-player {
+    aspect-ratio: 16 / 9;
+    min-height: 220px;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    touch-action: manipulation;
+  }
+
+  .secure-video-player--fullscreen {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+  }
+
+  .secure-video-player__video {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    object-fit: contain;
+    pointer-events: none;
+  }
+
+  .secure-video-player__center,
+  .secure-video-player__message,
+  .secure-video-player__warning,
+  .secure-video-player__big-play {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+  }
+
+  .secure-video-player__center {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    border-radius: 999px;
+    background: rgb(15 23 42 / 0.82);
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 800;
+    letter-spacing: 0;
+    color: white;
+    backdrop-filter: blur(16px);
+  }
+
+  .secure-video-player__spinner {
+    width: 1.35rem;
+    height: 1.35rem;
+    border: 3px solid rgb(255 255 255 / 0.25);
+    border-top-color: #22d3ee;
+    border-radius: 999px;
+    animation: secure-video-spin 0.8s linear infinite;
+  }
+
+  .secure-video-player__message,
+  .secure-video-player__warning {
+    width: min(92%, 30rem);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    text-align: center;
+    font-weight: 800;
+    box-shadow: 0 24px 80px rgb(0 0 0 / 0.5);
+  }
+
+  .secure-video-player__message {
+    background: rgb(127 29 29 / 0.94);
+    color: white;
+  }
+
+  .secure-video-player__warning {
+    top: 18%;
+    background: rgb(15 23 42 / 0.92);
+    color: #e2e8f0;
+  }
+
+  .secure-video-player__big-play {
+    display: grid;
+    min-width: 6rem;
+    height: 4.25rem;
+    place-items: center;
+    border-radius: 0.5rem;
+    background: rgb(255 255 255 / 0.15);
+    padding: 0 1.5rem;
+    font-weight: 900;
+    color: white;
+    backdrop-filter: blur(18px);
+    transition: background 160ms ease, transform 160ms ease;
+  }
+
+  .secure-video-player__big-play:hover,
+  .secure-video-player__big-play:focus-visible {
+    background: rgb(34 211 238 / 0.9);
+    color: #020617;
+    outline: none;
+  }
+
+  .secure-video-player__controls {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    z-index: 30;
+    display: grid;
+    gap: 0.65rem;
+    padding: 4rem 1rem 1rem;
+    background: linear-gradient(to top, rgb(0 0 0 / 0.92), rgb(0 0 0 / 0.62), transparent);
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 180ms ease, transform 180ms ease;
+  }
+
+  .secure-video-player__controls--hidden {
+    opacity: 0;
+    transform: translateY(0.75rem);
+    pointer-events: none;
+  }
+
+  .secure-video-player__buffer-track,
+  .secure-video-player__progress {
+    height: 0.25rem;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgb(255 255 255 / 0.16);
+  }
+
+  .secure-video-player__buffer-track span,
+  .secure-video-player__progress span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+  }
+
+  .secure-video-player__buffer-track span {
+    background: rgb(255 255 255 / 0.32);
+  }
+
+  .secure-video-player__progress span {
+    background: #22d3ee;
+  }
+
+  .secure-video-player__seek,
+  .secure-video-player__volume {
+    accent-color: #22d3ee;
+  }
+
+  .secure-video-player__seek {
+    width: 100%;
+    height: 1rem;
+    cursor: pointer;
+  }
+
+  .secure-video-player__bar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .secure-video-player__cluster {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .secure-video-player__cluster--right {
+    justify-content: flex-end;
+  }
+
+  .secure-video-player__cluster button,
+  .secure-video-player__speed {
+    min-height: 2.25rem;
+    border-radius: 0.5rem;
+    background: rgb(255 255 255 / 0.12);
+    padding: 0 0.75rem;
+    font-size: 0.82rem;
+    font-weight: 900;
+    color: white;
+    outline: none;
+    transition: background 150ms ease, color 150ms ease;
+  }
+
+  .secure-video-player__cluster button:hover,
+  .secure-video-player__cluster button:focus-visible,
+  .secure-video-player__speed:focus-visible {
+    background: rgb(34 211 238 / 0.9);
+    color: #020617;
+  }
+
+  .secure-video-player__cluster button:disabled {
+    cursor: not-allowed;
+    opacity: 0.35;
+  }
+
+  .secure-video-player__volume {
+    width: 6.5rem;
+  }
+
+  .secure-video-player__speed {
+    border: 0;
+  }
+
+  .secure-video-player__speed option {
+    background: #020617;
+    color: white;
+  }
+
+  .secure-video-player__time {
+    display: inline-flex;
+    justify-content: center;
+    gap: 0.35rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-size: 0.82rem;
+    color: #cbd5e1;
+    white-space: nowrap;
+  }
+
+  .secure-video-player__remaining {
+    color: #94a3b8;
+  }
+
+  @media (max-width: 760px) {
+    .secure-video-player {
+      min-height: 190px;
+    }
+
+    .secure-video-player__controls {
+      padding: 3.25rem 0.75rem 0.75rem;
+    }
+
+    .secure-video-player__bar {
+      grid-template-columns: 1fr;
+      justify-items: stretch;
+    }
+
+    .secure-video-player__cluster,
+    .secure-video-player__cluster--right {
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .secure-video-player__volume {
+      width: 5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .secure-video-player {
+      min-height: 180px;
+      border-radius: 0.5rem;
+    }
+
+    .secure-video-player__controls {
+      gap: 0.45rem;
+      padding: 2.75rem 0.5rem 0.55rem;
+    }
+
+    .secure-video-player__cluster {
+      gap: 0.35rem;
+    }
+
+    .secure-video-player__cluster button,
+    .secure-video-player__speed {
+      min-height: 2rem;
+      padding: 0 0.55rem;
+      font-size: 0.74rem;
+    }
+
+    .secure-video-player__volume {
+      width: 4.25rem;
+    }
+
+    .secure-video-player__remaining {
+      display: none;
+    }
+  }
+
+  @keyframes secure-video-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes skeleton-shimmer {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+}
